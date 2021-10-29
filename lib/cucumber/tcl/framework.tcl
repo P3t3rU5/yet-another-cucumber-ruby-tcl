@@ -1,5 +1,5 @@
-
 namespace eval ::cucumber:: {
+
   variable STEPS [list]
   variable TEST
 
@@ -17,7 +17,6 @@ namespace eval ::cucumber:: {
   namespace export When
   namespace export Then
   namespace export pending
-
 }
 
 #
@@ -86,13 +85,19 @@ proc ::cucumber::_search_steps {step_name {execute 0} {multiline_args {}}} {
         set multiline_var_name [lindex $existing_step_params end]
         set $multiline_var_name $multiline_args
       }
-      
+
       if {$execute == 1} {
-        if {[catch {
+        set retCode [catch {
           eval $existing_step_body
-        } msg]} {
-          if {$msg eq "pending"} {
+        } msg]
+        if {$retCode == 1} {
+          # we caught an TCL_ERROR and will check for error message
+          if {$msg eq "skipped"} {
+            return "skipped"
+          } elseif {$msg eq "pending"} {
             return "pending"
+          } elseif {$msg eq "undefined"} {
+            return "undefined"
           }
           error $::errorInfo
         }

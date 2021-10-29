@@ -36,6 +36,10 @@ module Cucumber
         def raise_any_pending_error
           if @raw == "pending"
             raise Cucumber::Core::Test::Result::Pending.new("TODO: Step not yet implemented")
+          elsif @raw == "skipped"
+            raise Cucumber::Core::Test::Result::Skipped.new("Step skipped")
+          elsif @raw == "undefined"
+            raise Cucumber::Core::Test::Result::Undefined.new()
           end
         end
       end
