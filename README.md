@@ -85,7 +85,7 @@ and in your step definition, you might have
 
 ## Resetting state between scenarios
 
-Depending on how your test and/or application code is structured, there may be a chance of data persisting between scenarios, which could result in tests that pass or fail unexpectedly.  To eliminiate the risk of this, Cucumber TCL will start a new TCL interpreter between every scenario by creating a new instance of the 'framework' object, meaning that the env.tcl file is loaded each time.  Whilst this will remove the data leakage risk, it may also cause your scenarios to run slowly if there is a lot of setup required for a scenario to run (eg, setting up fixture data, building a database or loading large amounts of data into memory).  To override the default behaviour of starting up a new interpreter, an environment variable can be passed into the 'cucumber' command enabling the sharing of the TCL interpreter via the 'framework' object:
+Depending on how your test and/or application code is structured, there may be a chance of data persisting between scenarios, which could result in tests that pass or fail unexpectedly.  To eliminate the risk of this, Cucumber TCL will start a new TCL interpreter between every scenario by creating a new instance of the 'framework' object, meaning that the env.tcl file is loaded each time.  Whilst this will remove the data leakage risk, it may also cause your scenarios to run slowly if there is a lot of setup required for a scenario to run (eg, setting up fixture data, building a database or loading large amounts of data into memory).  To override the default behaviour of starting up a new interpreter, an environment variable can be passed into the 'cucumber' command enabling the sharing of the TCL interpreter via the 'framework' object:
 
     cucumber SHARE_FRAMEWORK=1
 
@@ -93,11 +93,11 @@ It's also possible to make the default behaviour of starting up a new interprete
 
     cucumber SHARE_FRAMEWORK=0
 
-If you are wrapping Cucumber around poorly understood legacy TCL code, you may wish to enable sharing of the framework object (and thus avoid starting a new TCL interpreter) during development in the interests of running tests quickly, but retain the default behaviour in your CI build to remove the risk of data leakage if you think there is a chance of this.
+When wrapping Cucumber around legacy Tcl code, you can speed up local development by sharing the framework object to avoid starting a new Tcl interpreter for every test. However, you should keep the default behavior in your CI build to prevent potential data leakage between tests.
 
 ## Returning Test Step Results
 
-Cucummber knows different types of results defined in:
+Cucumber knows different types of results defined in:
 
     lib/cucumber/core/test/result.rb
 
