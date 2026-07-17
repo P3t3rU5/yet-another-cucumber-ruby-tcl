@@ -50,7 +50,7 @@ proc ::cucumber::_add_step args {
     error "The parameters for this procedure are regular_expression ?list_of_capture_variables? body"
     return 0
   }
-    
+
   lappend STEPS [list $re $params $body]
 }
 

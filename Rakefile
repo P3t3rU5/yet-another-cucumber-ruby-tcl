@@ -1,18 +1,28 @@
-# encoding: utf-8
 require 'rubygems'
 require 'bundler'
-Bundler::GemHelper.install_tasks
 
-task default: [:rspec, :cucumber, :tcltest]
+require 'bundler/gem_tasks'
 
-task :rspec do
-  sh "rspec"
+task default: %i[clean spec cucumber tcltest rubocop build install]
+
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new(:spec)
+
+require 'cucumber/rake/task'
+
+Cucumber::Rake::Task.new(:cucumber) do |t|
+  t.cucumber_opts = %w[--format pretty --publish-quiet]
 end
 
-task :cucumber do
-  sh "cucumber -f pretty"
-end
-
+desc 'runs tcl test'
 task :tcltest do
-  sh "export TEST=1 && tclsh8.5 lib/cucumber/tcl/test/test_framework.tcl"
+  sh({ 'TEST' => '1' }, 'tclsh lib/cucumber/tcl/test/test_framework.tcl')
 end
+
+require 'rubocop/rake_task'
+
+RuboCop::RakeTask.new do |task|
+  task.fail_on_error = false
+end
+
+CLEAN.include %w[pkg/ tmp/]

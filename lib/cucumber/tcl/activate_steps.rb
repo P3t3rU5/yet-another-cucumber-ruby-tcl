@@ -2,7 +2,6 @@ require 'cucumber/core/filter'
 
 module Cucumber
   module Tcl
-
     ActivateSteps = Cucumber::Core::Filter.new(:create_step_definitions) do
       def test_case(test_case)
         activated_steps = test_case.test_steps.map do |test_step|
@@ -22,7 +21,5 @@ module Cucumber
         @step_definitions ||= create_step_definitions.call
       end
     end
-
   end
 end
-

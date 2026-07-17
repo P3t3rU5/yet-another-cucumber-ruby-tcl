@@ -11,7 +11,7 @@ Feature: Define a step
       """
       require 'cucumber/tcl'
       """
-    And a file named "features/step_defintions/steps.tcl" with:
+    And a file named "features/step_definitions/steps.tcl" with:
       """
       Given {^passing$} {
         puts "Hello world"
@@ -34,7 +34,7 @@ Feature: Define a step
       """
       require 'cucumber/tcl'
       """
-    And a file named "features/step_defintions/steps.tcl" with:
+    And a file named "features/step_definitions/steps.tcl" with:
       """
       Given {^passing (\d+)$} {num} {
         puts "Hello $num"
@@ -80,7 +80,7 @@ Feature: Define a step
       """
       require 'cucumber/tcl'
       """
-    And a file named "features/step_defintions/steps.tcl" with:
+    And a file named "features/step_definitions/steps.tcl" with:
       """
       Given {^failing$} {
         error "Failing Step"
@@ -99,7 +99,7 @@ Feature: Define a step
                 ("eval" body line 2)
                 invoked from within
             "eval $existing_step_body" (Tcl::Error)
-            features/test.feature:3:in `Given failing'
+            features/test.feature:3:in `failing'
       
       Failing Scenarios:
       cucumber features/test.feature:2 # Scenario: 
@@ -119,7 +119,7 @@ Feature: Define a step
       """
       require 'cucumber/tcl'
       """
-    And a file named "features/step_defintions/steps.tcl" with:
+    And a file named "features/step_definitions/steps.tcl" with:
       """
       Given {^failing$} {
         failing_proc
@@ -144,7 +144,7 @@ Feature: Define a step
                 ("eval" body line 2)
                 invoked from within
             "eval $existing_step_body" (Tcl::Error)
-            features/test.feature:3:in `Given failing'
+            features/test.feature:3:in `failing'
       
       Failing Scenarios:
       cucumber features/test.feature:2 # Scenario: 

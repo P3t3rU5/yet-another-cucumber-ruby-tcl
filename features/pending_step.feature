@@ -19,7 +19,7 @@ Feature: A step that is still pending implementation
       """
       require 'cucumber/tcl'
       """
-    And a file named "features/step_defintions/steps.tcl" with:
+    And a file named "features/step_definitions/steps.tcl" with:
       """
       Given {^pending$} {
         pending
@@ -32,8 +32,6 @@ Feature: A step that is still pending implementation
 
         Scenario: 
           Given pending
-            TODO: Step not yet implemented (Cucumber::Core::Test::Result::Pending)
-            features/test.feature:3:in `Given pending'
 
       1 scenario (1 pending)
       1 step (1 pending)

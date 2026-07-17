@@ -1,20 +1,15 @@
-Build status: [![Circle CI](https://circleci.com/gh/cucumber/cucumber-ruby-tcl/tree/master.svg?style=svg)](https://circleci.com/gh/cucumber/cucumber-ruby-tcl/tree/master)
-
-Cucumber Tcl
-============
+# Cucumber Tcl
 
 Drive your Tcl code with Cucumber.
 
-Dependencies
-------------
+## Dependencies
 
 You'll need the following:
 
 * tcl8.5 and dev libraries
-* ruby > 1.9.1 along with its dev libraries
+* ruby > 3.0.0 along with its dev libraries
 
-How to use
-----------
+## How to use
 
 First, add the `cucumber-tcl` plugin to your Gemfile:
 
@@ -88,8 +83,7 @@ and in your step definition, you might have
       puts "The first item I bought was [lindex $items 0]"
     }
 
-Resetting state between scenarios
----------------------------------
+## Resetting state between scenarios
 
 Depending on how your test and/or application code is structured, there may be a chance of data persisting between scenarios, which could result in tests that pass or fail unexpectedly.  To eliminiate the risk of this, Cucumber TCL will start a new TCL interpreter between every scenario by creating a new instance of the 'framework' object, meaning that the env.tcl file is loaded each time.  Whilst this will remove the data leakage risk, it may also cause your scenarios to run slowly if there is a lot of setup required for a scenario to run (eg, setting up fixture data, building a database or loading large amounts of data into memory).  To override the default behaviour of starting up a new interpreter, an environment variable can be passed into the 'cucumber' command enabling the sharing of the TCL interpreter via the 'framework' object:
 
@@ -101,8 +95,7 @@ It's also possible to make the default behaviour of starting up a new interprete
 
 If you are wrapping Cucumber around poorly understood legacy TCL code, you may wish to enable sharing of the framework object (and thus avoid starting a new TCL interpreter) during development in the interests of running tests quickly, but retain the default behaviour in your CI build to remove the risk of data leakage if you think there is a chance of this.
 
-Returning Test Step Results
----------------------------
+## Returning Test Step Results
 
 Cucummber knows different types of results defined in:
 

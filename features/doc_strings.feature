@@ -14,7 +14,7 @@ Feature: DocStrings
       """
       require 'cucumber/tcl'
       """
-    And a file named "features/step_defintions/steps.tcl" with:
+    And a file named "features/step_definitions/steps.tcl" with:
       """
       Given {^passing with a DocString:$} {content} {
         puts "Hello $content"

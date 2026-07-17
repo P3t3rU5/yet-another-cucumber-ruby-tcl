@@ -1,0 +1,13 @@
+plugins:
+  - rubocop-rake
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# to be removed if/when done
+Style/Documentation:
+  Enabled: false
